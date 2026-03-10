@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-signin-client_id" id="googleSignInClientId" content="">
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SplitEase">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <title>SplitEase</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!--
+    Two jobs:
+    1. Rewrite /join/:id → /#/join/:id so Flutter's hash router sees it.
+    2. Save the inviteId to localStorage as a fallback — if Firebase's
+       signInWithRedirect reloads the page at the root URL, the router
+       reads this key and sends the user back to the join page after auth.
+  -->
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      var m = path.match(/^\/join\/([^\/\s]+)/);
+      if (m) {
+        var inviteId = m[1];
+        // Belt-and-suspenders: save BEFORE redirect so it survives
+        // any auth redirect flow that loses the URL
+        try { localStorage.setItem('se_pending_invite', inviteId); } catch(e) {}
+        window.location.replace('/#/join/' + inviteId);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
