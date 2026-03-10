@@ -1,0 +1,9 @@
+class ServerException    implements Exception { final String message; const ServerException([this.message    = 'Server error']); }
+class NetworkException   implements Exception { final String message; const NetworkException([this.message   = 'Network error']); }
+class CacheException     implements Exception { final String message; const CacheException([this.message     = 'Cache error']); }
+class AuthException      implements Exception { final String message; const AuthException([this.message      = 'Auth error']); }
+class GroupException     implements Exception { final String message; const GroupException([this.message     = 'Group error']); }
+class ExpenseException   implements Exception { final String message; const ExpenseException([this.message   = 'Expense error']); }
+class InviteException    implements Exception { final String message; const InviteException([this.message    = 'Invite error']); }
+class StorageException   implements Exception { final String message; const StorageException([this.message   = 'Storage error']); }
+class PermissionException implements Exception { final String message; const PermissionException([this.message = 'Permission denied']); }

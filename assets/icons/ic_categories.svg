@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 48">
+  <!-- food -->
+  <g transform="translate(0,0)">
+    <circle cx="24" cy="24" r="20" fill="#FFF3E0"/>
+    <text x="24" y="30" font-family="Arial" font-size="18" text-anchor="middle">🍽️</text>
+  </g>
+  <!-- transport -->
+  <g transform="translate(48,0)">
+    <circle cx="24" cy="24" r="20" fill="#E3F2FD"/>
+    <text x="24" y="30" font-family="Arial" font-size="18" text-anchor="middle">🚗</text>
+  </g>
+  <!-- accommodation -->
+  <g transform="translate(96,0)">
+    <circle cx="24" cy="24" r="20" fill="#F3E5F5"/>
+    <text x="24" y="30" font-family="Arial" font-size="18" text-anchor="middle">🏨</text>
+  </g>
+  <!-- entertainment -->
+  <g transform="translate(144,0)">
+    <circle cx="24" cy="24" r="20" fill="#FCE4EC"/>
+    <text x="24" y="30" font-family="Arial" font-size="18" text-anchor="middle">🎬</text>
+  </g>
+  <!-- shopping -->
+  <g transform="translate(192,0)">
+    <circle cx="24" cy="24" r="20" fill="#E8F5E9"/>
+    <text x="24" y="30" font-family="Arial" font-size="18" text-anchor="middle">🛒</text>
+  </g>
+</svg>

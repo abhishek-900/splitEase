@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "expense_tracker (web)",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--web-port", "5000"]
+        },
+        {
+            "name": "expense_tracker (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--web-port", "5000"]
+        },
+        {
+            "name": "expense_tracker (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--web-port", "5000"]
+        }
+    ]
+}
