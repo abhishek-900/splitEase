@@ -304,7 +304,7 @@ class _SuccessView extends StatelessWidget {
           width: 80,
           height: 80,
           decoration: BoxDecoration(
-            color: AppTheme.success.withOpacity(0.12),
+            color: AppTheme.success.withValues(alpha: 0.12),
             shape: BoxShape.circle,
           ),
           child: const Icon(Icons.check_circle_rounded,
@@ -362,7 +362,7 @@ class _ErrorView extends StatelessWidget {
           width: 80,
           height: 80,
           decoration: BoxDecoration(
-            color: AppTheme.error.withOpacity(0.10),
+            color: AppTheme.error.withValues(alpha: 0.10),
             shape: BoxShape.circle,
           ),
           child: Icon(

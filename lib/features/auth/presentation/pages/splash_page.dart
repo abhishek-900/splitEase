@@ -23,7 +23,7 @@ class SplashPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(26),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
+                    color: Colors.black.withValues(alpha: 0.15),
                     blurRadius: 30,
                     offset: const Offset(0, 10),
                   ),
@@ -54,7 +54,7 @@ class SplashPage extends StatelessWidget {
               'Split expenses, not friendships',
               style: TextStyle(
                 fontSize: 15,
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
               ),
             ),
             const SizedBox(height: 60),

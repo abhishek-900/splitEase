@@ -5,7 +5,6 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
-import '../../../../core/network/network_info.dart';
 import '../../domain/entities/group_entity.dart';
 import '../../domain/repositories/group_repository.dart';
 import '../datasources/group_remote_datasource.dart';
@@ -14,10 +13,10 @@ import '../models/group_model.dart';
 @LazySingleton(as: GroupRepository)
 class GroupRepositoryImpl implements GroupRepository {
   final GroupRemoteDataSource _remote;
-  final NetworkInfo _net;
+
   final FirebaseFirestore _db;
 
-  GroupRepositoryImpl(this._remote, this._net, this._db);
+  GroupRepositoryImpl(this._remote, this._db);
 
   @override
   Stream<List<GroupEntity>> watchUserGroups(String userId) =>

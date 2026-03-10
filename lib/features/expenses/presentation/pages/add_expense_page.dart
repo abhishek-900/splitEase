@@ -51,7 +51,9 @@ class _AddExpenseViewState extends State<_AddExpenseView> {
     _titleCtrl.dispose();
     _amountCtrl.dispose();
     _noteCtrl.dispose();
-    for (final c in _splitControllers.values) c.dispose();
+    for (final c in _splitControllers.values) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -199,7 +201,7 @@ class _AddExpenseViewState extends State<_AddExpenseView> {
                             ),
                             selected: _category == cat,
                             onSelected: (_) => setState(() => _category = cat),
-                            selectedColor: cat.color.withOpacity(0.15),
+                            selectedColor: cat.color.withValues(alpha: 0.15),
                           ))
                       .toList(),
                 ),

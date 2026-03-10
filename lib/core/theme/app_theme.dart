@@ -173,7 +173,7 @@ class AppTheme {
       // ── NavigationBar ──────────────────────────────────────────────────────
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: surface,
-        indicatorColor: primaryBlue.withOpacity(0.12),
+        indicatorColor: primaryBlue.withValues(alpha: 0.12),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return const IconThemeData(color: primaryBlue);
@@ -189,7 +189,7 @@ class AppTheme {
               fontSize: 12, fontWeight: FontWeight.w600, color: subtext);
         }),
         elevation: 4,
-        shadowColor: Colors.black.withOpacity(0.08),
+        shadowColor: Colors.black.withValues(alpha: 0.08),
       ),
 
       // ── FloatingActionButton ───────────────────────────────────────────────
@@ -217,7 +217,7 @@ class AppTheme {
       // ── Chip ───────────────────────────────────────────────────────────────
       chipTheme: ChipThemeData(
         backgroundColor: inputFill,
-        selectedColor: primaryBlue.withOpacity(0.15),
+        selectedColor: primaryBlue.withValues(alpha: 0.15),
         labelStyle: GoogleFonts.nunito(fontSize: 13),
         side: BorderSide(color: border),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

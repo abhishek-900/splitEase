@@ -28,7 +28,7 @@ class ExpenseListTile extends StatelessWidget {
           border: Border.all(color: AppTheme.neutral200),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
@@ -41,7 +41,7 @@ class ExpenseListTile extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: expense.category.color.withOpacity(0.12),
+                color: expense.category.color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(

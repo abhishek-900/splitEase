@@ -12,7 +12,6 @@ import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
-import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:injectable/injectable.dart' as _i526;
@@ -68,11 +67,6 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i99.ExpenseRemoteDataSource>(
-        () => _i99.ExpenseRemoteDataSourceImpl(
-              gh<_i974.FirebaseFirestore>(),
-              gh<_i457.FirebaseStorage>(),
-            ));
     gh.lazySingleton<_i989.AuthRemoteDataSource>(
         () => _i989.AuthRemoteDataSourceImpl(
               gh<_i59.FirebaseAuth>(),
@@ -94,31 +88,15 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i532.SettlementRemoteDataSource>(),
               gh<_i355.NetworkInfo>(),
             ));
-    gh.lazySingleton<_i74.ExpenseRepository>(() => _i1067.ExpenseRepositoryImpl(
-          gh<_i99.ExpenseRemoteDataSource>(),
-          gh<_i355.NetworkInfo>(),
+    gh.lazySingleton<_i651.GroupRepository>(() => _i962.GroupRepositoryImpl(
+          gh<_i107.GroupRemoteDataSource>(),
+          gh<_i974.FirebaseFirestore>(),
         ));
+    gh.lazySingleton<_i99.ExpenseRemoteDataSource>(
+        () => _i99.ExpenseRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()));
     gh.lazySingleton<_i307.AuthRepository>(() => _i242.AuthRepositoryImpl(
           gh<_i989.AuthRemoteDataSource>(),
           gh<_i355.NetworkInfo>(),
-        ));
-    gh.lazySingleton<_i556.WatchGroupExpensesUseCase>(
-        () => _i556.WatchGroupExpensesUseCase(gh<_i74.ExpenseRepository>()));
-    gh.lazySingleton<_i556.AddExpenseUseCase>(
-        () => _i556.AddExpenseUseCase(gh<_i74.ExpenseRepository>()));
-    gh.lazySingleton<_i556.UpdateExpenseUseCase>(
-        () => _i556.UpdateExpenseUseCase(gh<_i74.ExpenseRepository>()));
-    gh.lazySingleton<_i556.DeleteExpenseUseCase>(
-        () => _i556.DeleteExpenseUseCase(gh<_i74.ExpenseRepository>()));
-    gh.lazySingleton<_i556.GetExpenseUseCase>(
-        () => _i556.GetExpenseUseCase(gh<_i74.ExpenseRepository>()));
-    gh.lazySingleton<_i556.UploadReceiptUseCase>(
-        () => _i556.UploadReceiptUseCase(gh<_i74.ExpenseRepository>()));
-    gh.factory<_i345.ExpenseBloc>(() => _i345.ExpenseBloc(
-          gh<_i556.WatchGroupExpensesUseCase>(),
-          gh<_i556.AddExpenseUseCase>(),
-          gh<_i556.UpdateExpenseUseCase>(),
-          gh<_i556.DeleteExpenseUseCase>(),
         ));
     gh.lazySingleton<_i294.SignInWithGoogleUseCase>(
         () => _i294.SignInWithGoogleUseCase(gh<_i307.AuthRepository>()));
@@ -130,20 +108,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i294.WatchAuthStateUseCase(gh<_i307.AuthRepository>()));
     gh.lazySingleton<_i294.UpdateProfileUseCase>(
         () => _i294.UpdateProfileUseCase(gh<_i307.AuthRepository>()));
-    gh.lazySingleton<_i1006.WatchGroupSettlementsUseCase>(() =>
-        _i1006.WatchGroupSettlementsUseCase(gh<_i158.SettlementRepository>()));
-    gh.lazySingleton<_i1006.RecordSettlementUseCase>(
-        () => _i1006.RecordSettlementUseCase(gh<_i158.SettlementRepository>()));
-    gh.lazySingleton<_i651.GroupRepository>(() => _i962.GroupRepositoryImpl(
-          gh<_i107.GroupRemoteDataSource>(),
-          gh<_i355.NetworkInfo>(),
-          gh<_i974.FirebaseFirestore>(),
-        ));
-    gh.factory<_i457.AuthBloc>(() => _i457.AuthBloc(
-          gh<_i294.SignInWithGoogleUseCase>(),
-          gh<_i294.SignOutUseCase>(),
-          gh<_i294.WatchAuthStateUseCase>(),
-        ));
     gh.lazySingleton<_i89.WatchUserGroupsUseCase>(
         () => _i89.WatchUserGroupsUseCase(gh<_i651.GroupRepository>()));
     gh.lazySingleton<_i89.CreateGroupUseCase>(
@@ -164,12 +128,43 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i89.JoinViaInviteUseCase(gh<_i651.GroupRepository>()));
     gh.lazySingleton<_i89.GetGroupBalancesUseCase>(
         () => _i89.GetGroupBalancesUseCase(gh<_i651.GroupRepository>()));
+    gh.lazySingleton<_i1006.WatchGroupSettlementsUseCase>(() =>
+        _i1006.WatchGroupSettlementsUseCase(gh<_i158.SettlementRepository>()));
+    gh.lazySingleton<_i1006.RecordSettlementUseCase>(
+        () => _i1006.RecordSettlementUseCase(gh<_i158.SettlementRepository>()));
+    gh.factory<_i457.AuthBloc>(() => _i457.AuthBloc(
+          gh<_i294.SignInWithGoogleUseCase>(),
+          gh<_i294.SignOutUseCase>(),
+          gh<_i294.WatchAuthStateUseCase>(),
+        ));
     gh.factory<_i40.GroupBloc>(() => _i40.GroupBloc(
           gh<_i89.WatchUserGroupsUseCase>(),
           gh<_i89.CreateGroupUseCase>(),
           gh<_i89.UpdateGroupUseCase>(),
           gh<_i89.DeleteGroupUseCase>(),
           gh<_i89.RemoveMemberUseCase>(),
+        ));
+    gh.lazySingleton<_i74.ExpenseRepository>(() => _i1067.ExpenseRepositoryImpl(
+          gh<_i99.ExpenseRemoteDataSource>(),
+          gh<_i355.NetworkInfo>(),
+        ));
+    gh.lazySingleton<_i556.WatchGroupExpensesUseCase>(
+        () => _i556.WatchGroupExpensesUseCase(gh<_i74.ExpenseRepository>()));
+    gh.lazySingleton<_i556.AddExpenseUseCase>(
+        () => _i556.AddExpenseUseCase(gh<_i74.ExpenseRepository>()));
+    gh.lazySingleton<_i556.UpdateExpenseUseCase>(
+        () => _i556.UpdateExpenseUseCase(gh<_i74.ExpenseRepository>()));
+    gh.lazySingleton<_i556.DeleteExpenseUseCase>(
+        () => _i556.DeleteExpenseUseCase(gh<_i74.ExpenseRepository>()));
+    gh.lazySingleton<_i556.GetExpenseUseCase>(
+        () => _i556.GetExpenseUseCase(gh<_i74.ExpenseRepository>()));
+    gh.lazySingleton<_i556.UploadReceiptUseCase>(
+        () => _i556.UploadReceiptUseCase(gh<_i74.ExpenseRepository>()));
+    gh.factory<_i345.ExpenseBloc>(() => _i345.ExpenseBloc(
+          gh<_i556.WatchGroupExpensesUseCase>(),
+          gh<_i556.AddExpenseUseCase>(),
+          gh<_i556.UpdateExpenseUseCase>(),
+          gh<_i556.DeleteExpenseUseCase>(),
         ));
     return this;
   }

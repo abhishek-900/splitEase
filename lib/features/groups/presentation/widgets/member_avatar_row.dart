@@ -101,7 +101,7 @@ class _MemberAvatar extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 1.5),
-        color: color.withOpacity(0.15),
+        color: color.withValues(alpha: 0.15),
       ),
       child: member.userPhotoUrl != null
           ? ClipOval(

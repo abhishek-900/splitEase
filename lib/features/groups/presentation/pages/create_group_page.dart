@@ -88,10 +88,10 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   width: 72,
                   height: 72,
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryBlue.withOpacity(0.1),
+                    color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppTheme.primaryBlue.withOpacity(0.3),
+                      color: AppTheme.primaryBlue.withValues(alpha: 0.3),
                       width: 2,
                     ),
                   ),

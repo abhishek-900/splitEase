@@ -170,7 +170,7 @@ class _ExpenseDetailView extends StatelessWidget {
                               CircleAvatar(
                                 radius: 18,
                                 backgroundColor:
-                                    AppTheme.primaryBlue.withOpacity(0.1),
+                                    AppTheme.primaryBlue.withValues(alpha: 0.1),
                                 child: Text(
                                   initial,
                                   style: const TextStyle(

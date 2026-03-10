@@ -53,7 +53,7 @@ class BalanceSummaryCard extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             AppTheme.primaryBlue,
-            AppTheme.primaryBlue.withOpacity(0.80),
+            AppTheme.primaryBlue.withValues(alpha: 0.80),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -61,7 +61,7 @@ class BalanceSummaryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primaryBlue.withOpacity(0.28),
+            color: AppTheme.primaryBlue.withValues(alpha: 0.28),
             blurRadius: 14,
             offset: const Offset(0, 5),
           ),
@@ -95,7 +95,7 @@ class BalanceSummaryCard extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.15),
+                  color: Colors.white.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(

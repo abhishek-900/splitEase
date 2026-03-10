@@ -33,7 +33,7 @@ class GroupListTile extends StatelessWidget {
           border: Border.all(color: AppTheme.neutral200),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -46,7 +46,7 @@ class GroupListTile extends StatelessWidget {
               width: 52.w,
               height: 52.w,
               decoration: BoxDecoration(
-                color: AppTheme.primaryGreen.withOpacity(0.1),
+                color: AppTheme.primaryGreen.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(14.r),
               ),
               child: group.imageUrl != null

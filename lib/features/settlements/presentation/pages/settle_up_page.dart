@@ -6,7 +6,6 @@ import '../../../../core/di/injection.dart';
 import '../../../../core/services/debt_simplifier.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/app_utils.dart';
-import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../groups/domain/entities/group_entity.dart';
 import '../../../groups/domain/usecases/group_usecases.dart';
 import '../../../groups/presentation/bloc/group_bloc.dart';
@@ -191,7 +190,7 @@ class _TransactionCard extends StatelessWidget {
         border: Border.all(color: AppTheme.neutral200),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -282,7 +281,7 @@ class _Avatar extends StatelessWidget {
     final init = name.isNotEmpty ? name[0].toUpperCase() : '?';
     return CircleAvatar(
       radius: 18,
-      backgroundColor: color.withOpacity(0.15),
+      backgroundColor: color.withValues(alpha: 0.15),
       child: Text(init,
           style: TextStyle(
               fontSize: 13, fontWeight: FontWeight.w700, color: color)),
@@ -307,7 +306,7 @@ class _AllSettledView extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: AppTheme.success.withOpacity(0.12),
+                color: AppTheme.success.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.check_circle_outline,

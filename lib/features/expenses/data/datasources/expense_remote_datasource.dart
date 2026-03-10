@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
@@ -63,10 +62,10 @@ abstract class ExpenseRemoteDataSource {
 @LazySingleton(as: ExpenseRemoteDataSource)
 class ExpenseRemoteDataSourceImpl implements ExpenseRemoteDataSource {
   final FirebaseFirestore _db;
-  final FirebaseStorage _storage;
+
   final _uuid = const Uuid();
 
-  ExpenseRemoteDataSourceImpl(this._db, this._storage);
+  ExpenseRemoteDataSourceImpl(this._db);
 
   CollectionReference get _col => _db.collection(AppConstants.colExpenses);
   CollectionReference get _settlements =>

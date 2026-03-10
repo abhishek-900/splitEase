@@ -1,8 +1,7 @@
 import 'dart:async';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
+import 'package:web/web.dart' as web;
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -53,15 +52,15 @@ const _kPendingInvite = 'se_pending_invite';
 
 void savePendingInvite(String inviteId) {
   try {
-    html.window.localStorage[_kPendingInvite] = inviteId;
+    web.window.localStorage.setItem(_kPendingInvite, inviteId);
   } catch (_) {}
 }
 
 String? consumePendingInvite() {
   try {
-    final id = html.window.localStorage[_kPendingInvite];
+    final id = web.window.localStorage.getItem(_kPendingInvite);
     if (id != null && id.isNotEmpty) {
-      html.window.localStorage.remove(_kPendingInvite);
+      web.window.localStorage.removeItem(_kPendingInvite);
       return id;
     }
   } catch (_) {}
@@ -70,7 +69,7 @@ String? consumePendingInvite() {
 
 String? peekPendingInvite() {
   try {
-    final id = html.window.localStorage[_kPendingInvite];
+    final id = web.window.localStorage.getItem(_kPendingInvite);
     if (id != null && id.isNotEmpty) return id;
   } catch (_) {}
   return null;
