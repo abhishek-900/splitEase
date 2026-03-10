@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/error/exceptions.dart';
+import '../../../../core/services/app_logger.dart';
 import '../../domain/entities/expense_entity.dart';
 import '../models/expense_model.dart';
 
@@ -183,11 +184,9 @@ class ExpenseRemoteDataSourceImpl implements ExpenseRemoteDataSource {
     );
     try {
       await _col.doc(id).set(model.toMap());
-      // ignore: avoid_print
-      print('✅ Expense saved: $id in group $groupId');
+      logger.info('✅ Expense saved: $id in group $groupId');
     } catch (e) {
-      // ignore: avoid_print
-      print('❌ Expense save failed: $e');
+      logger.error('❌ Expense save failed: $e');
       throw ExpenseException(e.toString());
     }
     return model;

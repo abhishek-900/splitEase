@@ -4,14 +4,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/services/app_logger.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../domain/usecases/group_usecases.dart';
 import '../../presentation/bloc/group_bloc.dart';
 
 void _log(String msg) {
-  // ignore: avoid_print
-  print('🔍 [JoinGroupPage] $msg');
+  logger.debug('🔍 [JoinGroupPage] $msg');
 }
 
 class JoinGroupPage extends StatefulWidget {
