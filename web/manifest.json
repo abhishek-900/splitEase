@@ -1,11 +1,11 @@
 {
-    "name": "expense_tracker",
-    "short_name": "expense_tracker",
+    "name": "SplitEase",
+    "short_name": "SplitEase",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A production-grade Flutter expense sharing app. Split bills, track expenses, and settle payments with your friends easily.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
