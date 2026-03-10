@@ -66,7 +66,7 @@ cd splitEase
 
 **2. Copy environment configuration**
 ```bash
-cp .env.example .env
+cp .env.json.example .env.json
 ```
 
 **3. Set up Firebase credentials**
@@ -75,14 +75,15 @@ Navigate to [Firebase Console](https://console.firebase.google.com/) and:
 1. Create a new project or select existing
 2. Enable Google Authentication
 3. Create a web app
-4. Copy your credentials into `.env`:
+4. Copy your credentials into `.env.json`:
 
-```env
-FIREBASE_WEB_API_KEY=your_api_key_here
-FIREBASE_WEB_AUTH_DOMAIN=your-project.firebaseapp.com
-FIREBASE_WEB_PROJECT_ID=your-project-id
-FIREBASE_WEB_STORAGE_BUCKET=your-project.appspot.com
-FIREBASE_WEB_MESSAGING_SENDER_ID=your_sender_id
+```json
+{
+  "FIREBASE_WEB_API_KEY": "your_api_key_here",
+  "FIREBASE_WEB_AUTH_DOMAIN": "your-project.firebaseapp.com",
+  "FIREBASE_WEB_PROJECT_ID": "your-project-id",
+  "FIREBASE_WEB_STORAGE_BUCKET": "your-project.appspot.com",
+  "FIREBASE_WEB_MESSAGING_SENDER_ID": "your_sender_id"
 FIREBASE_WEB_APP_ID=your_app_id
 FIREBASE_WEB_MEASUREMENT_ID=your_measurement_id
 GOOGLE_SIGNIN_CLIENT_ID=your_client_id
@@ -131,7 +132,7 @@ lib/
 └── firebase_options.dart          # Firebase configuration (auto-generated)
 
 pubspec.yaml                       # Dependencies
-.env.example                       # Environment template
+.env.json.example                  # Environment template
 README.md                          # This file
 CONTRIBUTING.md                   # Contribution guidelines
 ```
@@ -170,23 +171,24 @@ Data Layer (Repositories & APIs)
 ## 🔐 Security & Environment
 
 ### Environment Variables
-All sensitive data is managed through `.env` file:
-- ✅ Firebase API keys
-- ✅ Google Sign-In credentials
-- ✅ App configuration
+All sensitive data is managed through `.env.json` file using `--dart-define-from-file`:
+- ✅ Firebase API keys (from .env.json)
+- ✅ Google Sign-In credentials (from .env.json)
+- ✅ App configuration (from .env.json)
 
 ### `.gitignore` Protection
 ```
-.env                          # Never committed (contains real credentials)
-.env.example                  # Committed (shows structure)
-google-services.json          # Platform-specific Firebase config
-GoogleService-Info.plist      # iOS Firebase config
-lib/firebase_options.dart     # Generated from .env
+.env.json                         # Never committed (contains real credentials)
+.env.json.example                 # Committed (shows structure)
+google-services.json              # Platform-specific Firebase config
+GoogleService-Info.plist          # iOS Firebase config
+lib/firebase_options.dart         # Generated from environment variables
 ```
 
 ### Best Practices
 - Never hardcode sensitive data
-- Use `.env.example` for team onboarding
+- Use `.env.json.example` for team onboarding
+- Always pass `--dart-define-from-file=.env.json` when building
 - Rotate credentials regularly
 - Use Firebase Security Rules
 
@@ -264,8 +266,9 @@ Error: "Error initializing Google Sign-In"
 ```
 **Solution:**
 - Verify Google Sign-In enabled in Firebase Console
-- Check `.env` has correct `GOOGLE_SIGNIN_CLIENT_ID`
+- Check `.env.json` has correct `GOOGLE_SIGNIN_CLIENT_ID`
 - Clear browser cache and cookies
+- Rebuild with: `flutter build web --dart-define-from-file=.env.json`
 
 ### Firestore Connection Issues
 ```
