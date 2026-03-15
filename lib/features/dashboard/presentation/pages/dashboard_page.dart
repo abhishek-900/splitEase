@@ -63,7 +63,7 @@ class _DashboardPageState extends State<DashboardPage> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _tab,
         onDestinationSelected: (i) => setState(() => _tab = i),
-        indicatorColor: AppTheme.primaryBlue.withValues(alpha: 0.12),
+        indicatorColor: AppTheme.primaryBlue.withOpacity(0.12),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         destinations: const [
           NavigationDestination(
@@ -183,7 +183,7 @@ class _GroupsTab extends StatelessWidget {
           ),
           BlocBuilder<GroupBloc, GroupState>(
             builder: (ctx, state) {
-              if (state is GroupLoading || state is GroupOperationSuccess) {
+              if (state is GroupLoading) {
                 return const SliverFillRemaining(
                   child: Center(
                       child: CircularProgressIndicator(
@@ -380,7 +380,7 @@ class _ActivityTile extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: expense.category.color.withValues(alpha: 0.12),
+              color: expense.category.color.withOpacity(0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
@@ -428,7 +428,7 @@ class _ActivityTile extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: AppTheme.success.withValues(alpha: 0.12),
+                    color: AppTheme.success.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: const Text('you paid',
@@ -519,7 +519,7 @@ class _ProfileTab extends StatelessWidget {
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (bottomSheetContext) => DraggableScrollableSheet(
+      builder: (_) => DraggableScrollableSheet(
         expand: false,
         initialChildSize: 0.6,
         maxChildSize: 0.85,
@@ -561,7 +561,7 @@ class _ProfileTab extends StatelessWidget {
                           : null,
                       contentPadding: EdgeInsets.zero,
                       onTap: () async {
-                        Navigator.of(bottomSheetContext).pop();
+                        Navigator.of(_).pop();
                         if (!sel && user != null) {
                           await getIt<AuthRemoteDataSource>().updateCurrency(
                             userId: user!.id as String,
@@ -717,7 +717,7 @@ class _Avatar extends StatelessWidget {
     }
     return CircleAvatar(
       radius: radius,
-      backgroundColor: AppTheme.primaryBlue.withValues(alpha: 0.12),
+      backgroundColor: AppTheme.primaryBlue.withOpacity(0.12),
       child: Text(
         name?.isNotEmpty == true ? name![0].toUpperCase() : '?',
         style: TextStyle(
@@ -736,6 +736,7 @@ class _ProfileTile extends StatelessWidget {
   final String label;
   final String? subtitle;
   final Color? color;
+  final Widget? trailing;
   final VoidCallback onTap;
 
   const _ProfileTile({
@@ -744,6 +745,7 @@ class _ProfileTile extends StatelessWidget {
     required this.onTap,
     this.subtitle,
     this.color,
+    this.trailing,
   });
 
   @override
@@ -761,10 +763,11 @@ class _ProfileTile extends StatelessWidget {
                   color: AppTheme.primaryBlue,
                   fontWeight: FontWeight.w600))
           : null,
-      trailing: color == null
-          ? const Icon(Icons.chevron_right,
-              color: AppTheme.neutral400, size: 18)
-          : null,
+      trailing: trailing ??
+          (color == null
+              ? const Icon(Icons.chevron_right,
+                  color: AppTheme.neutral400, size: 18)
+              : null),
       contentPadding: const EdgeInsets.symmetric(vertical: 1),
       onTap: onTap,
     );
